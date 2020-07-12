@@ -7,6 +7,7 @@ use App\Models\Slider;
 use App\Models\Relation;
 use App\Models\Photo;
 use App\Models\Video;
+use App\Models\Article;
 
 class HomeController extends Controller
 {
@@ -31,7 +32,8 @@ class HomeController extends Controller
         $relations = Relation::orderBy('created_at', 'DESC')->take(5)->get();
         $photos = Photo::orderBy('created_at', 'DESC')->take(3)->get();
         $videos = Video::orderBy('created_at', 'DESC')->take(10)->get();
+        $articles = Article::orderBy('created_at', 'DESC')->take(6)->get();
 
-        return view('public.home', compact('sliders', 'relations', 'photos', 'videos'));
+        return view('public.home', compact('sliders', 'relations', 'photos', 'videos', 'articles'));
     }
 }

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Relation;
+use App\Models\Article;
 use Illuminate\Http\Request;
 
-class RelationController extends Controller
+class ArticleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,20 @@ class RelationController extends Controller
      */
     public function index()
     {
-        return Relation::orderBy('created_at', 'DESC')->get();
+        $articles = Article::orderBy('created_at', 'DESC')->get();
+        $posts = [];
+        $n = 0;
+
+        foreach ($articles as $article) {
+            $posts[$n] = $article;
+            $posts[$n]['picture_url'] = $article->media[0]->getFullUrl();
+
+            unset($posts[$n]->media);
+
+            $n++;
+        }
+        
+        return $posts;
     }
 
     /**
@@ -42,23 +55,24 @@ class RelationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Relation  $relation
+     * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show(Relation $relation)
+    public function show(Article $article)
     {
-        $relation->prestations = $relation->prestations;
+        $article->picture_url = $article->media[0]->getFullUrl();
+        unset($article->media);
 
-        return $relation;
+        return $article;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Relation  $relation
+     * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function edit(Relation $relation)
+    public function edit(Article $article)
     {
         //
     }
@@ -67,10 +81,10 @@ class RelationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Relation  $relation
+     * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Relation $relation)
+    public function update(Request $request, Article $article)
     {
         //
     }
@@ -78,10 +92,10 @@ class RelationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Relation  $relation
+     * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Relation $relation)
+    public function destroy(Article $article)
     {
         //
     }

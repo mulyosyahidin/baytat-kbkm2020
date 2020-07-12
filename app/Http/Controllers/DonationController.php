@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Relation;
+use Illuminate\Http\Request;
 
-class RelationController extends Controller
+class DonationController extends Controller
 {
     public function index()
     {
         $relations = Relation::orderBy('created_at', 'DESC')->paginate();
 
-        return view('public.educations.relations.index', compact('relations'));
+        return view('public.donations.index', compact('relations'));
     }
 
     public function show(Relation $relation, $slug)
     {
-        return view('public.educations.relations.show', compact('relation'));
+        abort(202, 'Masih Dalam Pengembangan...');
     }
 }

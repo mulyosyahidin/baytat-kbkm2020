@@ -19,7 +19,7 @@ class CreateRelationPrestationsTable extends Migration
             $table->string('event_name');
             $table->string('organizer')->nullable();
             $table->year('year')->nullable()->default(2020);
-            $table->mediumText('description');
+            $table->mediumText('description')->nullable();
             $table->timestamps();
 
             $table->index('relation_id');

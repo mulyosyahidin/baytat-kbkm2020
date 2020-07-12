@@ -17,7 +17,7 @@ class VideoController extends Controller
     public function index()
     {
         return response()
-            ->json(['data' => VIdeo::orderBy('created_at', 'DESC')->get()]);
+            ->json(['data' => Video::orderBy('created_at', 'DESC')->get()]);
     }
 
     /**

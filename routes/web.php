@@ -43,19 +43,24 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     });
 
     Route::resource('relations', 'Admin\RelationController');
+
 });
 
 Route::get('/educations', 'Educations\EducationController@index')->name('edu');
 
 Route::get('/sanggar', 'RelationController@index')->name('relation.index');
-Route::get('/sanggar/{id}/{slug}', 'RelationController@show')->name('relation.show');
+Route::get('/sanggar/{relation}/{slug}', 'RelationController@show')->name('relation.show');
 
-Route::get('/videos', 'Educations\VideoController@index')->name('edu.videos.index');
-Route::get('/videos/{video}', 'Educations\VideoController@show')->name('edu.videos.show');
+Route::get('/video', 'Educations\VideoController@index')->name('edu.videos.index');
+Route::get('/video/{video}', 'Educations\VideoController@show')->name('edu.videos.show');
 
-Route::get('/photos', 'Educations\PhotoController@index')->name('edu.photos.index');
-Route::get('/photos/{photo}', 'Educations\PhotoController@show')->name('edu.photos.show');
+Route::get('/foto', 'Educations\PhotoController@index')->name('edu.photos.index');
+Route::get('/foto/{photo}', 'Educations\PhotoController@show')->name('edu.photos.show');
 
-Route::get('/articles', 'Educations\ArticleController@index')->name('edu.articles.index');
+Route::get('/artikel', 'Educations\ArticleController@index')->name('edu.articles.index');
+Route::get('/artikel/{article}/{slug}', 'Educations\ArticleController@show')->name('edu.articles.show');
 
 Route::get('/pages/{page}', 'PageController@show')->name('pages');
+
+Route::get('/donasi', 'DonationController@index')->name('donation.index');
+Route::get('/donasi/{relation}/{slug}', 'DonationController@show')->name('donation.show');

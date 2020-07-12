@@ -179,7 +179,7 @@
                                 @foreach ($relations as $sanggar)
                                 <article class="col-6 col-sm-4 col-md-3">
                                     <a class="blogthm_link"
-                                        href="{{ route('relation.show', ['id' => $sanggar->id, 'slug' => $sanggar->slug]) }}">
+                                        href="{{ route('relation.show', ['relation' => $sanggar->id, 'slug' => $sanggar->slug]) }}">
                                         <div class="bloglist">
                                             <div class="blogthm"
                                                 style="background-image:url({{ $sanggar->media[0]->getFullUrl() }})">
@@ -215,7 +215,8 @@
                                     @foreach ($videos as $video)
                                     <div>
                                         <a href="{{ route('edu.videos.show', $video->id) }}">
-                                            <iframe src="https://www/youtube.com/embed/{{ $video->video_id }}" frameborder="0" class="img-fluid grid-item grid-item-{{ $n }}"></iframe>
+                                            <iframe src="https://www/youtube.com/embed/{{ $video->video_id }}"
+                                                frameborder="0" class="img-fluid grid-item grid-item-{{ $n }}"></iframe>
                                             <p>{{ $video->title }}</p>
                                         </a>
                                     </div>
@@ -260,6 +261,51 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="blogl">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Artikel</h3>
+                        </div>
+                        @if (!count($articles) > 0)
+                        <div class="card-body">
+                            <div class="alert alert-info">Tidak ada data untuk ditampilkan</div>
+                        </div>
+                        @endif
+                    </div>
+                </div>
+            </div>
+
+            @if (count($articles) > 0)
+            <div class="row">
+                @foreach ($articles as $article)
+                <div class="col-12 col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title"><a href="{{ route('edu.articles.show', ['article' => $article->id, 'slug' => $article->slug]) }}">{{ $article->title }}</a></h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="float-left mr-3">
+                                <img style="width: 80px; height: 80px;" src="{{ $article->media[0]->getFullUrl() }}" alt="{{ $article->title }} class="img-fluid">
+                            </div>
+                            
+                            {{ strip_tags(\Str::limit($article->content, 300)) }}
+                        </div>
+                        <div class="card-footer text-right">
+                            <a href="{{ route('edu.articles.show', ['article' => $article->id, 'slug' => $article->slug]) }}">
+                                Baca Selengkapnya &raquo;
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            @endif
         </div>
     </section>
 </main>

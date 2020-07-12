@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<title>@yield('title')</title>
+	<title>@yield('title') | {{ getSiteName() }}</title>
 
 	<link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}">
 	<link rel="stylesheet" href="{{ asset('assets/plugins/font-awesome/css/all.min.css') }}">
@@ -46,7 +46,7 @@
 						</ul>
 					</li>
 					<li class="nav-item ml-2">
-						<a class="nav-link" href="">Donasi</a>
+						<a class="nav-link" href="{{ route('donation.index') }}">Donasi</a>
 					</li>
 					<li class="nav-item ml-2">
 						<a class="nav-link" href="">Tentang {{ getSiteName() }}</a>

@@ -22,4 +22,9 @@ Route::group(['namespace' => 'Api'], function () {
     Route::resource('sliders', 'SliderController');
     Route::resource('educations/videos', 'VideoController');
     Route::resource('categories', 'CategoryController');
+
+    Route::resource('public/relations', 'RelationController');
+    Route::resource('public/videos', 'VideoController');
+    Route::resource('public/photos', 'PhotoController');
+    Route::resource('public/articles', 'ArticleController');
 });

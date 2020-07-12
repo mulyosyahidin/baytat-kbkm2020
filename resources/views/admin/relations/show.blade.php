@@ -54,7 +54,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            @if (count($relation->prestations) > 0)
+                            @if (count($relation->media) > 0)
                             <div class="owl-carousel owl-theme">
                                 @foreach ($relation->media as $media)
                                 <div class="item">

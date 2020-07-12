@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Relation;
+use App\Models\Photo;
 use Illuminate\Http\Request;
 
-class RelationController extends Controller
+class PhotoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class RelationController extends Controller
      */
     public function index()
     {
-        return Relation::orderBy('created_at', 'DESC')->get();
+        return Photo::orderBy('created_at', 'DESC')->get();
     }
 
     /**
@@ -42,23 +42,33 @@ class RelationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Relation  $relation
+     * @param  \App\Models\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function show(Relation $relation)
+    public function show(Photo $photo)
     {
-        $relation->prestations = $relation->prestations;
+        $n = 0;
+        $pictures = [];
 
-        return $relation;
+        foreach ($photo->media as $pic) {
+            $pictures[$n]['url'] = $pic->getFullUrl();
+
+            $n++;
+        }
+
+        $photo->pictures = $pictures;
+        unset($photo->media);
+
+        return $photo;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Relation  $relation
+     * @param  \App\Models\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Relation $relation)
+    public function edit(Photo $photo)
     {
         //
     }
@@ -67,10 +77,10 @@ class RelationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Relation  $relation
+     * @param  \App\Models\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Relation $relation)
+    public function update(Request $request, Photo $photo)
     {
         //
     }
@@ -78,10 +88,10 @@ class RelationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Relation  $relation
+     * @param  \App\Models\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Relation $relation)
+    public function destroy(Photo $photo)
     {
         //
     }

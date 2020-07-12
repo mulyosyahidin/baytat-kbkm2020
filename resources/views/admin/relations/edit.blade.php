@@ -8,8 +8,8 @@
         <h1>{{ $relation->name }}</h1>
         <div class="section-header-breadcrumb">
           <div class="breadcrumb-item active"><a href="{{ route('admin.home') }}">Dashboard</a></div>
-          <div class="breadcrumb-item"><a href="{{ route('admin.sanggar') }}">Sanggar</a></div>
-          <div class="breadcrumb-item"><a href="{{ route('admin.sanggar.view', $relation->id) }}">{{ $relation->name }}</a></div>
+          <div class="breadcrumb-item"><a href="{{ route('relation.index') }}">Sanggar</a></div>
+          <div class="breadcrumb-item"><a href="{{ route('relations.show', $relation->id) }}">{{ $relation->name }}</a></div>
           <div class="breadcrumb-item">Edit</div>
         </div>
       </div>
